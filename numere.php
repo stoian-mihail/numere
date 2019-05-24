@@ -172,7 +172,7 @@ function osutaNouasute($n){ //cazul  100<=n<999
 }
         function omieNouamii($n){ //cazul  1000<=n<9999
             global $n;
-            if ($n>1000) {$n=$n%1000;} //conditie necesara execturarii corecte a functiei in functia mare
+            if ($n>10000) {$n=$n%10000;} //conditie necesara execturarii corecte a functiei in functia mare
             $c7="M";
             $c14="MV̄";
             $c15="MX̄";
