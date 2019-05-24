@@ -30,13 +30,12 @@ $c12="CD";
 $c13="CM";
 $c14="MV̄";
 $c15="MX̄";
+$c16="X̄";
+$c17="V̄";
+$c18="L̄";
+$c19="C̄";
 
 $n=$_POST["numar"];
-
-//if ($q<1){$q=$q*10;};
-//$q=floor($q);
-//$r=$n%10;
-//$r1=$n%100;
 
 
 function unuNoua($n)
@@ -77,7 +76,7 @@ function unuNoua($n)
 //functia pentru valori de la 10-99
 function zeceNouazeci($n){
     global $n;
-    if ($n>100) {$n=$n%100;}
+    if ($n>100) {$n=$n%100;} //conditie necesara execturarii corecte a functiei in functia mare
     $c3="X";
     $c10="XL";
     $c4="L";
@@ -121,6 +120,7 @@ function zeceNouazeci($n){
 
 function osutaNouasute($n){ //cazul  100<=n<999
     global $n;
+    if ($n>1000) {$n=$n%1000;} //conditie necesara execturarii corecte a functiei in functia mare
     $c5="C";
     $c6="D";
     $c12="CD";
@@ -152,7 +152,7 @@ function osutaNouasute($n){ //cazul  100<=n<999
 //cazul 500-800; formarea numerelor este realizata afisand c6=D + c5=I de i ori, unde i=q-5
 
     elseif (($cat>=5)&&($cat<=8)){
-        $i=$q-5;
+        $i=$cat-5;
         echo "$c6";
 
         while($i>0) // functia care ne ajuta sa afisam c1 de i ori
@@ -172,80 +172,132 @@ function osutaNouasute($n){ //cazul  100<=n<999
 }
         function omieNouamii($n){ //cazul  1000<=n<9999
             global $n;
-            $c5="C";
-            $c6="D";
-            $c12="CD";
-            $c13="CM";
+            if ($n>1000) {$n=$n%1000;} //conditie necesara execturarii corecte a functiei in functia mare
+            $c7="M";
+            $c14="MV̄";
+            $c15="MX̄";
+            $c17="V̄";
+            $catMii=$n/1000;
+            $catMii=floor($catMii);
+            $restMii=$n%1000;
 
-            $cat=$n/100;
-            $cat=floor($cat);
-            $restmare=$n%100;
 
+            // Cazul 1000-3000
 
-            // Cazul 100-300
-
-            if ($cat<4){
-                while($cat>0){ // multiplicatorul care ne ajuta sa afisam c5=c de q ori
-                    echo "$c5";
-                    $cat--;}
-                if($restmare!=0){
-                    zeceNouazeci($restmare);
+            if ($catMii<4){
+                while($catMii>0){ // multiplicatorul
+                    echo "$c7";
+                    $catMii--;}
+                if($restMii!=0){
+                    osutaNouasute($restMii);
                 }
             }
 
-            // cazul nr=400
+            // cazul nr=4000
 
-            elseif ($cat==4){
-                echo "$c12";
-                if($restmare!=0){
-                    zeceNouazeci($restmare);}
+            elseif ($catMii==4){
+                echo "$c14";
+                if($restMii!=0){
+                    osutaNouasute($restMii);}
             }
-        //cazul 500-800; formarea numerelor este realizata afisand c6=D + c5=I de i ori, unde i=q-5
+        //cazul 5000-8000; formarea numerelor este realizata afisand c6=D + c5=I de i ori, unde i=q-5
 
-            elseif (($cat>=5)&&($cat<=8)){
-                $i=$q-5;
-                echo "$c6";
+            elseif (($catMii>=5)&&($catMii<=8)){
+                $i=$catMii-5;
+                echo "$c17";
 
                 while($i>0) // functia care ne ajuta sa afisam c1 de i ori
-                {echo "$c5";
+                {echo "$c7";
                     $i--;}
-                if($restmare!=0){
-                    zeceNouazeci($restmare);}
+                if($restMii!=0){
+                    osutaNouasute($restMii);}
             }
-            //cazul n=900
-            elseif (($cat>=9) && ($cat<10) ) {
-                echo "$c13";
-                if($restmare!=0){
-                    zeceNouazeci($restmare);}
+            //cazul n=9000
+            elseif (($catMii>=9) && ($catMii<10) ) {
+                echo "$c15";
+                if($restMii!=0){
+                    osutaNouasute($restMii);}
             }
 
 
         }
-
-echo "Numarul introdus este:". $n;
-echo "<br>";
- echo "Catul este:". $q;
-echo "<br>";
-echo "Restul este:" .$r;
-echo "<br>";
-echo "Restul-1 este:".$r1."<br>";
-echo "Numarul roman este: ";
-    if ($n<10) {unuNoua($n);};
-
-    if (($n>=10 && $n<100)){
-        zeceNouazeci($n);
-        //$r=$n%10;
-       // unuNoua($r);
-        //restunuNoua($r);
-    };
-if(($n>=100) && ($n<1000)) {osutaNouasute($n);}
-
-echo "<br>";
+function zecemiiOsutademii($n){ //cazul  1000<=n<9999
+    global $n;
+    $c16="X̄";
+    $c18="L̄";
+    $c19="C̄";
+    $c20="X̄L̄";
+    $c21="X̄C̄";
+    $catZeciMii=$n/10000;
+    $catZeciMii=floor($catZeciMii);
+    $restZeciMii=$n%10000;
 
 
-//restunuNoua($n);
+    // Cazul 10000-30000
+
+    if ($catZeciMii<4){
+        while($catZeciMii>0){ // multiplicatorul
+            echo "$c16";
+            $catZeciMii--;}
+        if($restZeciMii!=0){
+            omieNouamii($restZeciMii);
+        }
+    }
+
+    // cazul nr=40000
+
+    elseif ($catZeciMii==4){
+        echo "$c20";
+        if($restZeciMii!=0){
+            omieNouamii($restZeciMii);}
+    }
+    //cazul 5000-8000;
+
+    elseif (($catZeciMii>=5)&&($catZeciMii<=8)){
+        $i=$catZeciMii-5;
+        echo "$c18";
+
+        while($i>0)
+        {echo "$c16";
+            $i--;}
+        if($restZeciMii!=0){
+            omieNouamii($restZeciMii);}
+    }
+    //cazul n=9000
+    elseif (($catZeciMii>=9) && ($catZeciMii<10) ) {
+        echo "$c21";
+        if($restZeciMii!=0){
+            omieNouamii($restZeciMii);}
+    }
+    elseif ($catZeciMii==10)
+    {echo "$c19";}
+
+}
+        //Functia mare:
+        function functieMare ($n){
+            if ($n<10) {unuNoua($n);}
+            if (($n>=10 && $n<100)){
+                zeceNouazeci($n);}
+            if(($n>=100) && ($n<1000)) {osutaNouasute($n);}
+            if(($n>=1000) && ($n<=10000)) {omieNouamii($n);}
+            if(($n>=10000) && ($n<=100000)) {zecemiiOsutademii($n);}
+            if($n==0) {echo "Te rugam introdu un diferit de 0";}
+            if($n>100000) {echo "Te rugam introdu un numar mai mic de 100.000";}
+            }
+           // FUNCTIE TESTARE
+
+
+    echo "Numarul introdus este:". $n;
+    echo "<br>";
+    echo "Numarul roman este: ";
+    // testare();
+    functieMare ($n);
+    echo "<br>";
+
+
+
 echo "<br>";
-//echo "Catul este:". $q;
+
 
 
 
