@@ -14,7 +14,7 @@
 <br>
 <?php
 
-
+/* Variabile cu numere romane utilizate in interiorul functiilor
 $c1="I";
 $c2="V";
 $c3="X";
@@ -33,7 +33,7 @@ $c15="MX̄";
 $c16="X̄";
 $c17="V̄";
 $c18="L̄";
-$c19="C̄";
+$c19="C̄";*/
 
 $n=$_POST["numar"];
 
@@ -155,7 +155,7 @@ function osutaNouasute($n){ //cazul  100<=n<999
         $i=$cat-5;
         echo "$c6";
 
-        while($i>0) // functia care ne ajuta sa afisam c1 de i ori
+        while($i>0)
         {echo "$c5";
             $i--;}
          if($restmare!=0){
@@ -200,13 +200,13 @@ function osutaNouasute($n){ //cazul  100<=n<999
                 if($restMii!=0){
                     osutaNouasute($restMii);}
             }
-        //cazul 5000-8000; formarea numerelor este realizata afisand c6=D + c5=I de i ori, unde i=q-5
+        //cazul 5000-8000;
 
             elseif (($catMii>=5)&&($catMii<=8)){
                 $i=$catMii-5;
                 echo "$c17";
 
-                while($i>0) // functia care ne ajuta sa afisam c1 de i ori
+                while($i>0)
                 {echo "$c7";
                     $i--;}
                 if($restMii!=0){
@@ -281,10 +281,10 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
             if(($n>=100) && ($n<1000)) {osutaNouasute($n);}
             if(($n>=1000) && ($n<=10000)) {omieNouamii($n);}
             if(($n>=10000) && ($n<=100000)) {zecemiiOsutademii($n);}
-            if($n==0) {echo "Te rugam introdu un diferit de 0";}
+            if($n==0 && $n!=null) {echo "Te rugam introdu un diferit de 0";}
             if($n>100000) {echo "Te rugam introdu un numar mai mic de 100.000";}
             }
-           // FUNCTIE TESTARE
+
 
 
     echo "Numarul introdus este:". $n;
@@ -293,10 +293,6 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
     // testare();
     functieMare ($n);
     echo "<br>";
-
-
-
-echo "<br>";
 
 
 
