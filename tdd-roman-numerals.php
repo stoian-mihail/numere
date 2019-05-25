@@ -1,7 +1,13 @@
 <?php
 function toRomanNumeral ($n){
+    $result="";
+    while ($n>0){
+        $n--;
+        $result=$result."I";
 
-    return ($n==1?"I":"II");
+    }
+
+    return $result;
 }
 
 function test($input, $expected){
@@ -12,3 +18,7 @@ function test($input, $expected){
 
 test(1,"I");
 test(2,"II");
+test (3,"III");
+test(4,"IV");
+
+
