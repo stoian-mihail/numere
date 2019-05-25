@@ -3,13 +3,12 @@ function toRomanNumeral ($n){
     return "I";
 }
 
-echo "Test 1: When passing 1 returns I";
-print_r("<br>Result:".(toRomanNumeral(1)=="I"?"true":"false"));
-echo "<br>";
+test(1,"I");
+test(2,"II");
 
-echo "Test 1: When passing 2 returns II";
-print_r("<br>Result:".(toRomanNumeral(2)=="II"?"true":"false"));
-echo "<br>";
-
-
+function test($input, $expected){
+    echo "Test : When passing $input returns $expected";
+    print_r("<br>Result:".(toRomanNumeral($input)==$expected?"true":"false"));
+    echo "<br>";
+}
 
