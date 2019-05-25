@@ -275,6 +275,7 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
 }
         //Functia mare:
         function functieMare ($n){
+            $timp_start=microtime(true);
             if ($n<10) {unuNoua($n);}
             if (($n>=10 && $n<100)){
                 zeceNouazeci($n);}
@@ -283,6 +284,9 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
             if(($n>=10000) && ($n<=100000)) {zecemiiOsutademii($n);}
             if($n==0 && $n!=null) {echo "Te rugam introdu un diferit de 0";}
             if($n>100000) {echo "Te rugam introdu un numar mai mic de 100.000";}
+            $timp_final=microtime(true);
+            $timp=$timp_final-$timp_start;
+            if (($n!=0) && ($n!=null)){echo "<br>"."Functia durat $timp secunde";}
             }
 
 
@@ -291,8 +295,12 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
     echo "<br>";
     echo "Numarul roman este: ";
     // testare();
+
+
     functieMare ($n);
+   
     echo "<br>";
+
 
 
 
