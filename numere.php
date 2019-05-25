@@ -38,18 +38,15 @@ $c19="C̄";*/
 $n=$_POST["numar"];
 
 
-function unuNoua($n)
+function unuNoua()
 {
     global $n;
     $c1="I";
     $c8="IV";
     $c2="V";
     $c9="IX";
-    $a=true;
-
-  if($a==true){
     $n=$n%10;
-    }
+
        if ($n<4){ // Cazul 1-3
            while($n>0){ // multiplicatorul care ne ajuta sa afisam c1=I de q ori
                echo "$c1";
@@ -275,7 +272,7 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
 }
         //Functia mare:
         function functieMare ($n){
-            $timp_start=microtime(true);
+            $timp_start=microtime(false);
             if ($n<10) {unuNoua($n);}
             if (($n>=10 && $n<100)){
                 zeceNouazeci($n);}
@@ -284,9 +281,9 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
             if(($n>=10000) && ($n<=100000)) {zecemiiOsutademii($n);}
             if($n==0 && $n!=null) {echo "Te rugam introdu un diferit de 0";}
             if($n>100000) {echo "Te rugam introdu un numar mai mic de 100.000";}
-            $timp_final=microtime(true);
+            $timp_final=microtime(false);
             $timp=$timp_final-$timp_start;
-            if (($n!=0) && ($n!=null)){echo "<br>"."Functia durat $timp secunde";}
+            if (($n!=0) && ($n!=null)){echo "<br>"."Functia durat ". round($timp/1000,8) ." mili secunde";}
             }
 
 
@@ -298,7 +295,7 @@ function zecemiiOsutademii($n){ //cazul  1000<=n<9999
 
 
     functieMare ($n);
-   
+
     echo "<br>";
 
 
