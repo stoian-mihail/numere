@@ -1,6 +1,6 @@
 <?php
 function toRomanNumeral ($n){
-    return "";
+    return "I";
 }
 
 echo "Test 1: When passing 1 returns I";
